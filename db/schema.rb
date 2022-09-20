@@ -10,12 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_17_165609) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_20_130316) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "books", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "author", null: false
+    t.string "category", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reserves", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "reserve_date", null: false
+    t.datetime "devolution_date", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reserves_on_book_id"
+    t.index ["user_id"], name: "index_reserves_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.integer "role", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -27,4 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_165609) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reserves", "books"
+  add_foreign_key "reserves", "users"
 end

@@ -1,0 +1,15 @@
+.pagination__desktop {
+  display: block;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
+
+.pagination__mobile {
+  display: none;
+
+  @media (max-width: 800px) {
+    display: block;
+  }
+}

@@ -53,6 +53,7 @@ gem "sassc-rails", "~> 2.1.2"
 gem "jquery-rails", "~> 4.4"
 gem "bootstrap", "~> 5.2.0"
 gem "bootstrap_form", "~> 5.1"
+gem "kaminari", "~> 1.2.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -1,0 +1,20 @@
+<div class="cointainer d-flex flex-wrap align-items-center justify-content-center m-5">
+  <div class="col-8">
+    <h2><%= 'Login' %></h2>
+
+    <div class="mb-4">
+      <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "layouts/error_messages", resource: resource %>
+
+        <%= f.email_field :email, autocomplete: "email" %>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+        <% if devise_mapping.rememberable? %>
+          <%= f.check_box :remember_me %>
+        <% end %>
+        <%= f.submit 'Login', class: "btn btn-primary btn-lg w-100" %>
+      <% end %>
+    </div>
+
+    <%= render "links" %>
+  </div>
+</div>

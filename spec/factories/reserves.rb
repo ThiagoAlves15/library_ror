@@ -1,9 +1,8 @@
 FactoryBot.define do
   factory :reserve do
-    book { nil }
-    user { nil }
-    reserve_date { "2022-09-20 10:03:16" }
-    devolution_date { "2022-09-20 10:03:16" }
-    status { 1 }
+    book
+    user
+    reserve_date { Faker::Time.between(from: DateTime.now - 2, to: DateTime.now) }
+    devolution_date { Faker::Time.between(from: DateTime.now, to: DateTime.now + 3) }
   end
 end

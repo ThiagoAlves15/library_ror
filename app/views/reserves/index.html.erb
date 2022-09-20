@@ -3,12 +3,12 @@
 <h1>Reserves</h1>
 
 <div id="reserves">
-  <% @reserves.each do |reserf| %>
-    <%= render reserf %>
+  <% @reserves.each do |reserve| %>
+    <%= render reserve %>
     <p>
-      <%= link_to "Show this reserve", reserf %>
+      <%= link_to "Show this reserve", reserve %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New reserve", new_reserf_path %>
+<%= link_to "New reserve", new_reserve_path %>

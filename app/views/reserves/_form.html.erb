@@ -1,10 +1,10 @@
-<%= form_with(model: reserf) do |form| %>
-  <% if reserf.errors.any? %>
+<%= form_with(model: reserve) do |form| %>
+  <% if reserve.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(reserf.errors.count, "error") %> prohibited this reserf from being saved:</h2>
+      <h2><%= pluralize(reserve.errors.count, "error") %> prohibited this reserve from being saved:</h2>
 
       <ul>
-        <% reserf.errors.each do |error| %>
+        <% reserve.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

@@ -1,0 +1,17 @@
+<span class="pagination__desktop">
+  <%= paginate books %>
+</span>
+
+<span class="pagination__mobile">
+  <nav class="pagination justify-content-center" role="navigation" aria-label="pager">
+    <ul class="pagination pagination-lg">
+      <li class="page-item">
+        <%= link_to_previous_page books, 'Previous Page', class: 'prev page-link link-secondary' %>
+      </li>
+
+      <li class="page-item">
+        <%= link_to_next_page books, 'Next Page', class: 'next page-link link-secondary' %>
+      </li>
+    </ul>
+  </nav>
+</span>

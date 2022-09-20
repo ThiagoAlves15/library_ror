@@ -1,0 +1,23 @@
+.header__avatar--desktop {
+  display: none;
+
+  @media (min-width: 992px) {
+    display: block;
+  }
+}
+
+.header__avatar--mobile {
+  display: block;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
+.header__dropdown {
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  position: absolute;
+  transform: translate(-180px, 65px);
+  z-index: 1205;
+}

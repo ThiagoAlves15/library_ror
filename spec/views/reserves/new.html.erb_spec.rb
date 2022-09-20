@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "reserves/new", type: :view do
+  let(:reserve) { build(:reserve) }
+
   before(:each) do
-    assign(:reserve, Reserve.new(
-      book: nil,
-      user: nil,
-      status: 1
-    ))
+    assign(:reserve, reserve)
   end
 
   it "renders new reserve form" do

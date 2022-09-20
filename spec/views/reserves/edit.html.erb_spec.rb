@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "reserves/edit", type: :view do
+  let(:reserve) { create(:reserve) }
+
   before(:each) do
-    @reserve = assign(:reserve, Reserve.create!(
-      book: nil,
-      user: nil,
-      status: 1
-    ))
+    @reserve = assign(:reserve, reserve)
   end
 
   it "renders the edit reserve form" do

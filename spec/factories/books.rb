@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :book do
-    title { "MyString" }
-    author { "MyString" }
-    category { "MyString" }
+    title { Faker::Book.title }
+    author { Faker::Book.author }
+    category { Faker::Book.genre }
   end
 end

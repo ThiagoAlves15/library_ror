@@ -1,25 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe "reserves/index", type: :view do
+  let(:reserve_one) { create(:reserve) }
+  let(:reserve_two) { create(:reserve) }
+
   before(:each) do
-    assign(:reserves, [
-      Reserve.create!(
-        book: nil,
-        user: nil,
-        status: 2
-      ),
-      Reserve.create!(
-        book: nil,
-        user: nil,
-        status: 2
-      )
-    ])
+    assign(:reserves, [reserve_one, reserve_two])
   end
 
   it "renders a list of reserves" do
     render
-    assert_select "tr>td", text: nil.to_s, count: 2
-    assert_select "tr>td", text: nil.to_s, count: 2
-    assert_select "tr>td", text: 2.to_s, count: 2
+
+    assert_select "p>strong", text: "Book:".to_s, count: 2
+    assert_select "p>strong", text: "User:".to_s, count: 2
   end
 end

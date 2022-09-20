@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "books/show", type: :view do
+  let(:book) { create(:book) }
+
   before(:each) do
-    @book = assign(:book, Book.create!(
-      title: "Title",
-      author: "Author",
-      category: "Category"
-    ))
+    @book = assign(:book, book)
   end
 
   it "renders attributes in <p>" do

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <%= link_to 'Big City Library', root_path, class: "navbar-brand" %>
+
+    <%= render 'layouts/avatar', type: "mobile" %>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item mt-2 mb-2">
+          <%= link_to "Users", users_path, class: "nav-link btn btn-link" %>
+        </li>
+        <li class="nav-item mt-2 mb-2">
+          <%= link_to "Reserves", reserves_path, class: "nav-link btn btn-link" %>
+        </li>
+        <li class="nav-item mt-2 mb-2">
+          <%= link_to "Books", books_path, class: "nav-link btn btn-link" %>
+        </li>
+      </ul>
+    </div>
+
+    <%= render 'layouts/avatar', type: "desktop" %>
+
+    <div class="header__dropdown">
+      <ul class="dropdown-menu text-small" data-popper-placement="bottom-end">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to 'Profile', edit_user_registration_path, class: "dropdown-item" %>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'Sign in', new_user_session_path, class: "dropdown-item" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

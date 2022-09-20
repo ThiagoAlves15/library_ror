@@ -1,0 +1,23 @@
+<div class="cointainer d-flex flex-wrap align-items-center justify-content-center m-5">
+  <div class="col-8">
+    <h2>
+      <%= 'Edit profile' %>
+    </h2>
+
+    <div class="mb-4">
+      <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "layouts/error_messages", resource: resource %>
+
+        <%= f.text_field :name, placeholder: "Full name", autocomplete: "name" %>
+        <%= f.email_field :email, placeholder: "email@example.com", autocomplete: "email" %>
+        <%= f.password_field :password, placeholder: 'New Password', help: '6 character minimum', autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, placeholder: 'Confirm password', autocomplete: "new-password" %>
+
+        <hr class="m-4" />
+
+        <%= f.password_field :current_password, placeholder: 'Current password', help: 'we need your current password to confirm the changes', autocomplete: "current-password" %>
+        <%= f.submit 'Update profile', class: "btn btn-primary btn-lg w-100" %>
+      <% end %>
+    </div>
+  </div>
+</div>

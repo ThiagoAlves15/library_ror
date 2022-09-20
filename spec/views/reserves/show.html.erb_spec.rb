@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "reserves/show", type: :view do
+  let(:reserve) { create(:reserve) }
+
   before(:each) do
-    @reserve = assign(:reserve, Reserve.create!(
-      book: nil,
-      user: nil,
-      status: 2
-    ))
+    @reserve = assign(:reserve, reserve)
   end
 
   it "renders attributes in <p>" do
