@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Reserves</h1>
+
+<div id="reserves">
+  <% @reserves.each do |reserf| %>
+    <%= render reserf %>
+    <p>
+      <%= link_to "Show this reserve", reserf %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New reserve", new_reserf_path %>

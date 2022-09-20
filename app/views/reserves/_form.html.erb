@@ -1,0 +1,42 @@
+<%= form_with(model: reserf) do |form| %>
+  <% if reserf.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(reserf.errors.count, "error") %> prohibited this reserf from being saved:</h2>
+
+      <ul>
+        <% reserf.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :book_id, style: "display: block" %>
+    <%= form.text_field :book_id %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :reserve_date, style: "display: block" %>
+    <%= form.datetime_field :reserve_date %>
+  </div>
+
+  <div>
+    <%= form.label :devolution_date, style: "display: block" %>
+    <%= form.datetime_field :devolution_date %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
