@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
+<div class="cointainer d-flex flex-wrap align-items-center justify-content-center m-5">
+  <div class="col-md-10">
+    <h2 class="mb-4">
+      Reserves
+    </h2>
 
-<h1>Reserves</h1>
+    <div class="mb-2">
+      <%= page_entries_info @reserves %>
+    </div>
 
-<div id="reserves">
-  <% @reserves.each do |reserve| %>
-    <%= render reserve %>
-    <p>
-      <%= link_to "Show this reserve", reserve %>
-    </p>
-  <% end %>
+    <%= form_tag(reserves_path, method: 'get', class: "d-flex mb-3") do %>
+      <%= text_field_tag(:search, params[:search], placeholder: "Search reserves", class: "form-control me-2") %>
+      <%= submit_tag("Search", name: nil, class: "btn btn-outline-success") %>
+    <% end %>
+
+    <%= render "layouts/pagination", resources: @reserves %>
+
+    <div class="mb-4">
+      <%= link_to 'New reserve', new_reserve_path, class: "btn btn-outline-primary mb-4" %>
+
+      <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+        <% @reserves.each do |reserve| %>
+          <%= render reserve, btn_show: true %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New reserve", new_reserve_path %>

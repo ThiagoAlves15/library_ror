@@ -1,9 +1,13 @@
-<h1>New reserve</h1>
+<div class="cointainer d-flex flex-wrap align-items-center justify-content-center m-5">
+  <div class="col-md-8">
+    <h2>
+      New reserve
+    </h2>
 
-<%= render "form", reserve: @reserve %>
+    <div class="mb-4">
+      <%= render "form", reserve: @reserve %>
+    </div>
 
-<br>
-
-<div>
-  <%= link_to "Back to reserves", reserves_path %>
+    <%= link_to "Back to reserves", reserves_path, class: "btn btn-outline-primary btn-lg w-100" %>
+  </div>
 </div>

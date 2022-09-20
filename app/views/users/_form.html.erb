@@ -1,22 +1,9 @@
-<%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= bootstrap_form_with(model: user) do |f| %>
+  <%= render "layouts/error_messages", resource: user %>
 
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.text_field :name, placeholder: "Full name", autocomplete: "name" %>
+  <%= f.email_field :email, placeholder: "email@example.com", autocomplete: "email" %>
+  <%= f.password_field :password, placeholder: 'Password', help: '6 character minimum', autocomplete: "password" %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= f.submit class: "btn btn-primary btn-lg w-100" %>
 <% end %>

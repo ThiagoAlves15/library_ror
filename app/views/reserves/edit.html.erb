@@ -1,10 +1,21 @@
-<h1>Editing reserve</h1>
+<div class="cointainer d-flex flex-wrap align-items-center justify-content-center m-5">
+  <div class="col-md-8">
+    <h2>
+      Editing reserve
+    </h2>
 
-<%= render "form", reserve: @reserve %>
+    <div class="mb-4">
+      <%= render "form", reserve: @reserve %>
 
-<br>
+      <div class="d-grid gap-2 col-md-8 mx-auto mt-4">
+        <div class="d-flex gap-2">
+          <%= link_to 'Back to reserves', reserves_path, class: "btn btn-outline-primary w-100" %>
+        </div>
 
-<div>
-  <%= link_to "Show this reserve", @reserve %> |
-  <%= link_to "Back to reserves", reserves_path %>
+        <hr class="mb-3 mt-4" />
+
+        <%= button_to 'Destroy this reserve', @reserve, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-outline-danger w-100" %>
+      </div>
+    </div>
+  </div>
 </div>

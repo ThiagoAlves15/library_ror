@@ -1,42 +1,8 @@
-<%= form_with(model: reserve) do |form| %>
-  <% if reserve.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(reserve.errors.count, "error") %> prohibited this reserve from being saved:</h2>
+<%= bootstrap_form_with(model: reserve) do |f| %>
+  <%= render "layouts/error_messages", resource: reserve %>
 
-      <ul>
-        <% reserve.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :book_id, style: "display: block" %>
-    <%= form.text_field :book_id %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :reserve_date, style: "display: block" %>
-    <%= form.datetime_field :reserve_date %>
-  </div>
-
-  <div>
-    <%= form.label :devolution_date, style: "display: block" %>
-    <%= form.datetime_field :devolution_date %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= f.text_field :user_id, placeholder: "User id" %>
+  <%= f.text_field :book_id, placeholder: "Book id" %>
+  <%= f.date_select :devolution_date, placeholder: "Devolution date" %>
+  <%= f.submit class: "btn btn-primary btn-lg w-100" %>
 <% end %>

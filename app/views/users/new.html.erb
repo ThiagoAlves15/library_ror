@@ -1,9 +1,13 @@
-<h1>New user</h1>
+<div class="cointainer d-flex flex-wrap align-items-center justify-content-center m-5">
+  <div class="col-md-8">
+    <h2>
+      New user
+    </h2>
 
-<%= render "form", user: @user %>
+    <div class="mb-4">
+      <%= render "form", user: @user %>
+    </div>
 
-<br>
-
-<div>
-  <%= link_to "Back to users", users_path %>
+    <%= link_to "Back to users", users_path, class: "btn btn-outline-primary btn-lg w-100" %>
+  </div>
 </div>

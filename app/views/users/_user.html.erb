@@ -1,7 +1,21 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Name:</strong>
-    <%= user.name %>
-  </p>
+<div class="col">
+  <div class="card h-100">
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Name:</strong>
+        <%= user.name %>
+      </p>
 
+      <p class="card-text">
+        <strong>Email:</strong>
+        <%= user.email %>
+      </p>
+    </div>
+
+    <% if btn_show %>
+      <div class="card-footer">
+        <%= link_to 'Show user', user_path(user), class: "btn btn-outline-primary w-100" %>
+      </div>
+    <% end %>
+  </div>
 </div>

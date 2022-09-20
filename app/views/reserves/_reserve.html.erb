@@ -1,27 +1,39 @@
-<div id="<%= dom_id reserve %>">
-  <p>
-    <strong>Book:</strong>
-    <%= reserve.book_id %>
-  </p>
+<div class="col">
+  <div class="card h-100">
+    <div class="card-body">
+      <%# if current_user.admin? %>
+      <% if current_user != reserve.user %>
+        <p class="card-text">
+          <strong>User name:</strong>
+          <%= reserve.user.name %>
+        </p>
+      <% end %>
 
-  <p>
-    <strong>User:</strong>
-    <%= reserve.user_id %>
-  </p>
+      <p class="card-text">
+        <strong>Book title:</strong>
+        <%= reserve.book.title %>
+      </p>
 
-  <p>
-    <strong>Reserve date:</strong>
-    <%= reserve.reserve_date %>
-  </p>
+      <p class="card-text">
+        <strong>Reserved at:</strong>
+        <%= reserve.reserve_date.strftime("%d %B %Y") %>
+      </p>
 
-  <p>
-    <strong>Devolution date:</strong>
-    <%= reserve.devolution_date %>
-  </p>
+      <p class="card-text">
+        <strong>Devolution:</strong>
+        <%= reserve.devolution_date.strftime("%d %B %Y") %>
+      </p>
 
-  <p>
-    <strong>Status:</strong>
-    <%= reserve.status %>
-  </p>
+      <p class="card-text">
+        <strong>Status:</strong>
+        <%= reserve.status %>
+      </p>
+    </div>
 
+    <% if btn_show %>
+      <div class="card-footer">
+        <%= link_to 'Show reserve', reserve_path(reserve), class: "btn btn-outline-primary w-100" %>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -3,7 +3,14 @@ class ReservesController < ApplicationController
 
   # GET /reserves or /reserves.json
   def index
-    @reserves = Reserve.all
+    @reserves = if params[:search]
+      # Reserve.where(
+      #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
+      # ).order(:email).page(params[:page])
+      Reserve.order(:devolution_date).page(params[:page])
+    else
+      Reserve.order(:devolution_date).page(params[:page])
+    end
   end
 
   # GET /reserves/1 or /reserves/1.json
@@ -22,6 +29,7 @@ class ReservesController < ApplicationController
   # POST /reserves or /reserves.json
   def create
     @reserve = Reserve.new(reserve_params)
+    @reserve.reserve_date = Time.zone.now
 
     respond_to do |format|
       if @reserve.save
