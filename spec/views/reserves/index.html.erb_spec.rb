@@ -7,7 +7,7 @@ RSpec.describe 'reserves/index', type: :view do
   let(:reserve_two) { create(:reserve) }
 
   before do
-    relation = Reserve.order(:devolution_date).page()
+    relation = Reserve.order(:devolution_date).page
     assign(:reserves, relation)
   end
 

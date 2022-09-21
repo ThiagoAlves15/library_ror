@@ -7,7 +7,7 @@ RSpec.describe 'books/index', type: :view do
   let(:book_two) { create(:book) }
 
   before do
-    relation = Book.order(:title).page()
+    relation = Book.order(:title).page
     assign(:books, relation)
   end
 

@@ -7,7 +7,7 @@ RSpec.describe 'users/index', type: :view do
   let(:user_two) { create(:user) }
 
   before do
-    relation = User.order(created_at: :desc).page()
+    relation = User.order(created_at: :desc).page
     assign(:users, relation)
   end
 
