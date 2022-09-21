@@ -28,3 +28,7 @@ Ruby versão 3.1.2
 
  - Para logar como administrador, use a conta de email "admin@admin.com" e senha "adminadmin";
  - A visualização do administrador é baseada em um CRUD básico;
+ 
+ ## Todo
+
+ - Adicionar o Active Storage para imagens de capa de livros e avatar do usuário;
