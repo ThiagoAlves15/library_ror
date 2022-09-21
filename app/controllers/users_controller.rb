@@ -6,12 +6,11 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.order(created_at: :desc).page(params[:page])
-    # @users = if params[:search]
-    #            # User.where(
-    #            #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
-    #            # ).order(:email).page(params[:page])
-    #          end
+    @users = if params[:search]
+      User.where('name ILIKE ?', "%#{params[:search]}%").order(created_at: :desc).page(params[:page])
+    else
+      User.order(created_at: :desc).page(params[:page])
+    end
   end
 
   # GET /users/1 or /users/1.json

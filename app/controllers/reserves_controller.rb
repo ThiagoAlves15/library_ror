@@ -2,21 +2,23 @@
 
 class ReservesController < ApplicationController
   load_and_authorize_resource
-  skip_authorize_resource only: :reserve_book
   before_action :set_reserve, only: %i[show edit update destroy]
   before_action :set_select_fields_options, only: %i[ new create edit update ]
 
   # GET /reserves or /reserves.json
   def index
-    # @reserves = if params[:search]
-    #               # Reserve.where(
-    #               #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
-    #               # ).order(:email).page(params[:page])
-    #             end
     if can? :manage, Reserve
-      @reserves = Reserve.order(devolution_date: :desc).page(params[:page])
+      if params[:search]
+        @reserves = Reserve.joins(:book).where('books.title ILIKE ?', "%#{params[:search]}%").order(devolution_date: :desc).page(params[:page])
+      else
+        @reserves = Reserve.order(devolution_date: :desc).page(params[:page])
+      end
     else
-      @reserves = current_user.reserves.order(devolution_date: :desc).page(params[:page])
+      if params[:search]
+        @reserves = current_user.reserves.joins(:book).where('books.title ILIKE ?', "%#{params[:search]}%").order(devolution_date: :desc).page(params[:page])
+      else
+        @reserves = current_user.reserves.order(devolution_date: :desc).page(params[:page])
+      end
     end
   end
 
@@ -45,7 +47,7 @@ class ReservesController < ApplicationController
         if can? :manage, Reserve
           format.html { redirect_to reserve_url(@reserve), notice: 'Reserve was successfully created.' }
         else
-          format.html { redirect_to books_url, status: :created }
+          format.html { redirect_to books_url, status: :created, notice: 'Reserve was successfully created.'  }
         end
         format.json { render :show, status: :created, location: @reserve }
       else

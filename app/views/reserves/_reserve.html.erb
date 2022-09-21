@@ -29,10 +29,12 @@
       </p>
     </div>
 
-    <% if btn_show %>
-      <div class="card-footer">
-        <%= link_to 'Show reserve', reserve_path(reserve), class: "btn btn-primary w-100" %>
-      </div>
+    <% if can? :manage, Book %>
+      <% if btn_show %>
+        <div class="card-footer">
+          <%= link_to 'Show reserve', reserve_path(reserve), class: "btn btn-primary w-100" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -6,15 +6,12 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    # @books = if params[:search]
-    #            # Book.where(
-    #            #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
-    #            # ).order(:email).page(params[:page])
-    #          end
+    @books = Book.where('title ILIKE ?', "%#{params[:search]}%") if params[:search]
+
     if can? :manage, Book
-      @books = Book.order(:title).page(params[:page])
+      @books = @books.order(:title).page(params[:page])
     else
-      @books = Book.available.order(:title).page(params[:page])
+      @books = @books.available.order(:title).page(params[:page])
     end
   end
 
