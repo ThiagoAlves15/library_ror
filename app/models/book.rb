@@ -8,4 +8,8 @@ class Book < ApplicationRecord
   validates :title, :author, :category, presence: true
 
   scope :available, -> { left_outer_joins(:reserves).where('reserves.id IS NULL OR reserves.status IN (1, 2)') }
+
+  def check_availability
+    reserves.any? {|reserve| reserve.reserved? || reserve.due? }
+  end
 end

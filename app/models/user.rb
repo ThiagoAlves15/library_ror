@@ -4,7 +4,7 @@ class User < ApplicationRecord
   acts_as_paranoid
   devise :database_authenticatable, :registerable, :rememberable, :validatable
 
-  enum role: { user: 0, admin: 1 }
+  enum role: { client: 0, admin: 1 }
 
   has_many :reserves, dependent: :destroy
   has_many :books, through: :reserves

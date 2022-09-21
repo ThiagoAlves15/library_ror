@@ -18,8 +18,15 @@
     </div>
 
     <% if btn_show %>
+      <% if can? :manage, Book %>
+        <div class="card-footer">
+          <%= link_to 'Show book', book_path(book), class: "btn btn-secondary w-100" %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if current_user && !current_user.admin? %>
       <div class="card-footer">
-        <%= link_to 'Show book', book_path(book), class: "btn btn-secondary w-100" %>
         <%= button_to 'Reserve book', { controller: "reserves", action: "create", reserve: { book_id: book.id }}, method: :post, class: "btn btn-primary w-100" %>
       </div>
     <% end %>
