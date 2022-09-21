@@ -1,6 +1,6 @@
 puts 'create admin'
 
-admin = User.create!(
+User.first_or_create(
   name: 'admin',
   email: 'admin@admin.com',
   password: 'adminadmin',
