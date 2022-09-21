@@ -26,5 +26,5 @@ Ruby versão 3.1.2
 
 ## Modo de uso
 
- - Para logar como administrador, use a conta de email 'admin@admin.com' e senha 'adminadmin';
+ - Para logar como administrador, use a conta de email "admin@admin.com" e senha "adminadmin";
  - A visualização do administrador é baseada em um CRUD básico;
