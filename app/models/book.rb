@@ -1,5 +1,7 @@
 class Book < ApplicationRecord
-  has_many :reserves
+  acts_as_paranoid
+
+  has_many :reserves, dependent: :destroy
 
   validates :title, :author, :category, presence: true
 end

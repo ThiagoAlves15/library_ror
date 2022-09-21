@@ -1,24 +1,11 @@
-# README
+# Big City Library reservation system
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Descrição
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ - Devise como ferramenta de autenticação;
+ - CanCanCan como ferramenta de permissão;
+ - Kaminari como ferramenta de paginação;
+ - Rspec, Factory bot, Faker e Simplecov como ferramentas de testes;
+ - Bootstrap como ferramenta de tema;
+ - Gem Paranoia para garantir integridade dos dados excluídos;
+ - Rubocop como ferramenta de lint;

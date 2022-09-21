@@ -3,3 +3,13 @@
 @import "header";
 @import "alerts";
 @import "pagination";
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: antiquewhite;
+}
+
+.content-wrap {
+  padding-bottom: 4rem;
+}

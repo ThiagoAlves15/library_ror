@@ -1,77 +1,77 @@
 require 'rails_helper'
 
-RSpec.describe "/reserves", type: :request do
+RSpec.describe '/reserves', type: :request do
   let(:book) { create(:book) }
   let(:user) { create(:user) }
 
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     {
       book_id: book.id,
       user_id: user.id,
       reserve_date: Faker::Time.between(from: DateTime.now - 2, to: DateTime.now),
-      devolution_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 3),
+      devolution_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 3)
     }
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     {
       book: nil,
       user: nil,
       reserve_date: nil,
-      devolution_date: nil,
+      devolution_date: nil
     }
-  }
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       Reserve.create! valid_attributes
       get reserves_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       reserve = Reserve.create! valid_attributes
       get reserve_url(reserve)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_reserve_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
+  describe 'GET /edit' do
+    it 'renders a successful response' do
       reserve = Reserve.create! valid_attributes
       get edit_reserve_url(reserve)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Reserve" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Reserve' do
+        expect do
           post reserves_url, params: { reserve: valid_attributes }
-        }.to change(Reserve, :count).by(1)
+        end.to change(Reserve, :count).by(1)
       end
 
-      it "redirects to the created reserve" do
+      it 'redirects to the created reserve' do
         post reserves_url, params: { reserve: valid_attributes }
         expect(response).to redirect_to(reserve_url(Reserve.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Reserve" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new Reserve' do
+        expect do
           post reserves_url, params: { reserve: invalid_attributes }
-        }.to change(Reserve, :count).by(0)
+        end.to change(Reserve, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
@@ -81,20 +81,20 @@ RSpec.describe "/reserves", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
+      end
 
-      it "updates the requested reserve" do
+      it 'updates the requested reserve' do
         reserve = Reserve.create! valid_attributes
         patch reserve_url(reserve), params: { reserve: new_attributes }
         reserve.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the reserve" do
+      it 'redirects to the reserve' do
         reserve = Reserve.create! valid_attributes
         patch reserve_url(reserve), params: { reserve: new_attributes }
         reserve.reload
@@ -102,7 +102,7 @@ RSpec.describe "/reserves", type: :request do
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         reserve = Reserve.create! valid_attributes
         patch reserve_url(reserve), params: { reserve: invalid_attributes }
@@ -111,15 +111,15 @@ RSpec.describe "/reserves", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested reserve" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested reserve' do
       reserve = Reserve.create! valid_attributes
-      expect {
+      expect do
         delete reserve_url(reserve)
-      }.to change(Reserve, :count).by(-1)
+      end.to change(Reserve, :count).by(-1)
     end
 
-    it "redirects to the reserves list" do
+    it 'redirects to the reserves list' do
       reserve = Reserve.create! valid_attributes
       delete reserve_url(reserve)
       expect(response).to redirect_to(reserves_url)

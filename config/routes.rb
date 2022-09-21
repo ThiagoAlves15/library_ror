@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, path: 'auth', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
-    registration: 'register',
+    registration: 'register'
   }, controllers: {
     registrations: 'users/registrations'
   }
@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resources :books
   resources :users
 
-  root "home#index"
+  root 'home#index'
 end

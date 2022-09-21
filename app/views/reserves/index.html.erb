@@ -10,7 +10,7 @@
 
     <%= form_tag(reserves_path, method: 'get', class: "d-flex mb-3") do %>
       <%= text_field_tag(:search, params[:search], placeholder: "Search reserves", class: "form-control me-2") %>
-      <%= submit_tag("Search", name: nil, class: "btn btn-outline-success") %>
+      <%= submit_tag("Search", name: nil, class: "btn btn-success") %>
     <% end %>
 
     <%= render "layouts/pagination", resources: @reserves %>

@@ -1,8 +1,7 @@
 <div class="col">
   <div class="card h-100">
     <div class="card-body">
-      <%# if current_user.admin? %>
-      <% if current_user != reserve.user %>
+      <% if user_signed_in? && current_user.admin? %>
         <p class="card-text">
           <strong>User name:</strong>
           <%= reserve.user.name %>

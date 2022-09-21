@@ -10,13 +10,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="page-container">
     <%= render 'layouts/header' %>
 
     <% if alert || notice %>
       <%= render 'layouts/alerts' %>
     <% end %>
 
-    <%= yield %>
+    <div class="content-wrap">
+      <%= yield %>
+    </div>
   </body>
 </html>
