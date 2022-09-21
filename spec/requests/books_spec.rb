@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe '/books', type: :request do
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
+
   let(:valid_attributes) do
     {
       title: Faker::Book.title,

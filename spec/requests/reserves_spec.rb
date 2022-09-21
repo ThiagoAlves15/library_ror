@@ -6,6 +6,10 @@ RSpec.describe '/reserves', type: :request do
   let(:book) { create(:book) }
   let(:user) { create(:user) }
 
+  before do
+    sign_in user
+  end
+
   let(:valid_attributes) do
     {
       book_id: book.id,
@@ -17,8 +21,8 @@ RSpec.describe '/reserves', type: :request do
 
   let(:invalid_attributes) do
     {
-      book: nil,
-      user: nil,
+      book_id: nil,
+      user_id: nil,
       reserve_date: nil,
       devolution_date: nil
     }
