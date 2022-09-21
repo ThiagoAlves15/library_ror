@@ -32,3 +32,4 @@ Ruby versão 3.1.2
  ## Todo
 
  - Adicionar o Active Storage para imagens de capa de livros e avatar do usuário;
+ - Aprimorar sistema de busca;
