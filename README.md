@@ -33,3 +33,4 @@ Ruby versão 3.1.2
 
  - Adicionar o Active Storage para imagens de capa de livros e avatar do usuário;
  - Aprimorar sistema de busca;
+ - Admin pode visualizar itens que foram soft deleted;
