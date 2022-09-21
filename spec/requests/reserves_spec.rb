@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe '/reserves', type: :request do
@@ -84,14 +86,19 @@ RSpec.describe '/reserves', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          book_id: book.id,
+          user_id: user.id,
+          reserve_date: Faker::Time.between(from: DateTime.now - 2, to: DateTime.now),
+          devolution_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 3)
+        }
       end
 
       it 'updates the requested reserve' do
         reserve = Reserve.create! valid_attributes
         patch reserve_url(reserve), params: { reserve: new_attributes }
         reserve.reload
-        skip('Add assertions for updated state')
+        expect(reserve.devolution_date.to_date).to eq(new_attributes[:devolution_date].to_date)
       end
 
       it 'redirects to the reserve' do

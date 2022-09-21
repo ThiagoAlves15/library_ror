@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe '/users', type: :request do
@@ -79,14 +81,18 @@ RSpec.describe '/users', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          name: Faker::Name.name,
+          email: Faker::Internet.email,
+          password: Faker::Alphanumeric.alpha(number: 8)
+        }
       end
 
       it 'updates the requested user' do
         user = User.create! valid_attributes
         patch user_url(user), params: { user: new_attributes }
         user.reload
-        skip('Add assertions for updated state')
+        expect(user.name).to eq(new_attributes[:name])
       end
 
       it 'redirects to the user' do

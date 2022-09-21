@@ -1,16 +1,16 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
 
   # GET /books or /books.json
   def index
-    @books = if params[:search]
-               # Book.where(
-               #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
-               # ).order(:email).page(params[:page])
-               Book.order(:title).page(params[:page])
-             else
-               Book.order(:title).page(params[:page])
-             end
+    # @books = if params[:search]
+    #            # Book.where(
+    #            #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
+    #            # ).order(:email).page(params[:page])
+    #          end
+    @books = Book.order(:title).page(params[:page])
   end
 
   # GET /books/1 or /books/1.json

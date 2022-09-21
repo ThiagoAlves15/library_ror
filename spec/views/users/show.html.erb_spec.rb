@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'users/show', type: :view do
   let(:user) { create(:user) }
 
   before do
-    @user = assign(:user, user)
+    assign(:user, user)
   end
 
   it 'renders attributes in <p>' do

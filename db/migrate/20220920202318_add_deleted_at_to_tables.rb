@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDeletedAtToTables < ActiveRecord::Migration[7.0]
   def change
     add_column :books, :deleted_at, :datetime

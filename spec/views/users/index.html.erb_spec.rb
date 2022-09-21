@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'users/index', type: :view do
@@ -5,7 +7,8 @@ RSpec.describe 'users/index', type: :view do
   let(:user_two) { create(:user) }
 
   before do
-    assign(:users, [user_one, user_two])
+    relation = User.order(created_at: :desc).page()
+    assign(:users, relation)
   end
 
   it 'renders a list of users' do

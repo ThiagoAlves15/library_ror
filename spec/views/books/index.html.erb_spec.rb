@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'books/index', type: :view do
@@ -5,7 +7,8 @@ RSpec.describe 'books/index', type: :view do
   let(:book_two) { create(:book) }
 
   before do
-    assign(:books, [book_one, book_two])
+    relation = Book.order(:title).page()
+    assign(:books, relation)
   end
 
   it 'renders a list of books' do

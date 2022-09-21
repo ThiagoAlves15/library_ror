@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'books/show', type: :view do
   let(:book) { create(:book) }
 
   before do
-    @book = assign(:book, book)
+    assign(:book, book)
   end
 
   it 'renders attributes in <p>' do

@@ -1,16 +1,16 @@
+# frozen_string_literal: true
+
 class ReservesController < ApplicationController
   before_action :set_reserve, only: %i[show edit update destroy]
 
   # GET /reserves or /reserves.json
   def index
-    @reserves = if params[:search]
-                  # Reserve.where(
-                  #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
-                  # ).order(:email).page(params[:page])
-                  Reserve.order(:devolution_date).page(params[:page])
-                else
-                  Reserve.order(:devolution_date).page(params[:page])
-                end
+    # @reserves = if params[:search]
+    #               # Reserve.where(
+    #               #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
+    #               # ).order(:email).page(params[:page])
+    #             end
+    @reserves = Reserve.order(:devolution_date).page(params[:page])
   end
 
   # GET /reserves/1 or /reserves/1.json
@@ -27,7 +27,7 @@ class ReservesController < ApplicationController
   # POST /reserves or /reserves.json
   def create
     @reserve = Reserve.new(reserve_params)
-    @reserve.reserve_date = Time.zone.now
+    @reserve.reserve_date = DateTime.now
 
     respond_to do |format|
       if @reserve.save

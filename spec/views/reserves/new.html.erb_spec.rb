@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'reserves/new', type: :view do
@@ -15,7 +17,7 @@ RSpec.describe 'reserves/new', type: :view do
 
       assert_select 'input[name=?]', 'reserve[user_id]'
 
-      assert_select 'input[name=?]', 'reserve[status]'
+      assert_select 'select[name=?]', 'reserve[devolution_date(1i)]'
     end
   end
 end

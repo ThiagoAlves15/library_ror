@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe '/books', type: :request do
@@ -79,14 +81,18 @@ RSpec.describe '/books', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          title: Faker::Book.title,
+          author: Faker::Book.author,
+          category: Faker::Book.genre
+        }
       end
 
       it 'updates the requested book' do
         book = Book.create! valid_attributes
         patch book_url(book), params: { book: new_attributes }
         book.reload
-        skip('Add assertions for updated state')
+        expect(book.title).to eq(new_attributes[:title])
       end
 
       it 'redirects to the book' do
