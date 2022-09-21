@@ -4,7 +4,7 @@
   <%= f.text_field :name, placeholder: "Full name", autocomplete: "name" %>
   <%= f.email_field :email, placeholder: "email@example.com", autocomplete: "email" %>
   <%= f.password_field :password, placeholder: 'Password', help: '6 character minimum', autocomplete: "password" %>
-  <%= f.form_group :role do %>
+  <%= f.form_group :role, label:{ text: 'User role' } do %>
     <%= f.radio_button :role, :admin, checked: user.admin? %>
     <%= f.radio_button :role, :client, checked: user.client? %>
   <% end %>

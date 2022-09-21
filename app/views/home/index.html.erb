@@ -1,5 +1,46 @@
-<div class="">
-  <h1>Home</h1>
-  <h2>Last reserve</h2>
-  <h2>Favorite category</h2>
+<div class="cointainer d-flex flex-wrap align-items-center justify-content-center m-5">
+  <div class="col-md-10">
+    <h2 class="mb-4">
+      Home
+    </h2>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+      <div>
+        <h3 class="mb-3">Last reserve</h3>
+
+        <% if @last_reserve %>
+            <%= render @last_reserve, btn_show: false %>
+        <% elsif !user_signed_in? %>
+          <h4>Login to see</h4>
+          <%= link_to 'Sign in', new_user_session_path, class: "btn btn-primary w-100" %>
+        <% else %>
+          <h4>Nothing to show</h4>
+        <% end %>
+      </div>
+
+      <div>
+        <h3 class="mb-3">User categories</h3>
+
+        <% if @user_books_categories %>
+          <div class="col">
+            <div class="card">
+              <% @user_books_categories.each do |category| %>
+                <div class="card-body">
+                  <p class="card-text">
+                    <strong><%= category[0] %></strong>
+                    <%= category[1] %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% elsif !user_signed_in? %>
+          <h4>Login to see</h4>
+          <%= link_to 'Sign in', new_user_session_path, class: "btn btn-primary w-100" %>
+        <% else %>
+          <h4>Nothing to show</h4>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
