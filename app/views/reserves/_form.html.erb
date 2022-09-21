@@ -1,8 +1,13 @@
 <%= bootstrap_form_with(model: reserve) do |f| %>
   <%= render "layouts/error_messages", resource: reserve %>
 
-  <%= f.text_field :user_id, placeholder: "User id" %>
-  <%= f.text_field :book_id, placeholder: "Book id" %>
+  <%= f.select :user_id, @users_array, value: reserve.user_id, include_blank: "Select a user" %>
+  <%= f.select :book_id, @books_array, value: reserve.book_id, include_blank: "Select a book" %>
   <%= f.date_select :devolution_date, placeholder: "Devolution date" %>
+  <%= f.form_group :status, label:{ text: 'Reserve status' } do %>
+    <%= f.radio_button :status, :reserved, checked: reserve.reserved? %>
+    <%= f.radio_button :status, :returned, checked: reserve.returned? %>
+    <%= f.radio_button :status, :due, checked: reserve.due? %>
+  <% end %>
   <%= f.submit class: "btn btn-primary btn-lg w-100" %>
 <% end %>

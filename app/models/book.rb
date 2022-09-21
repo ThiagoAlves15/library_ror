@@ -9,7 +9,11 @@ class Book < ApplicationRecord
 
   scope :available, -> { left_outer_joins(:reserves).where('reserves.id IS NULL OR reserves.status IN (1, 2)') }
 
-  def check_availability
-    reserves.any? {|reserve| reserve.reserved? || reserve.due? }
+  def self.available
+    book_ids = Book.all.map { |book|
+      book unless book.reserves.any? { |reserve| reserve.reserved? || reserve.due? }
+    }.compact.pluck(:id)
+
+    return Book.where(id: book_ids)
   end
 end

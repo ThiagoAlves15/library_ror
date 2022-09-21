@@ -15,6 +15,18 @@
         <strong>Category:</strong>
         <%= book.category %>
       </p>
+
+      <p class="card-text">
+        <strong>In library since:</strong>
+        <%= book.created_at.strftime("%d %B %Y") %>
+      </p>
+
+      <% if can? :manage, Book %>
+        <p class="card-text">
+          <strong>Last modification:</strong>
+          <%= book.updated_at.strftime("%d %B %Y") %>
+        </p>
+      <% end %>
     </div>
 
     <% if btn_show %>

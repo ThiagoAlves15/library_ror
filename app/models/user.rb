@@ -9,8 +9,10 @@ class User < ApplicationRecord
   has_many :reserves, dependent: :destroy
   has_many :books, through: :reserves
 
+  scope :clients, -> { where(role: :client) }
+
   def user_books_categories
-    return [] unless books.present?
+    return unless books.present?
 
     books.group(:category).count.sort_by {|_key, value| -value}
   end

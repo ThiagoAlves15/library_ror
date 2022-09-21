@@ -4,6 +4,7 @@ class ReservesController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource only: :reserve_book
   before_action :set_reserve, only: %i[show edit update destroy]
+  before_action :set_select_fields_options, only: %i[ new create edit update ]
 
   # GET /reserves or /reserves.json
   def index
@@ -36,15 +37,23 @@ class ReservesController < ApplicationController
     @reserve.reserve_date = DateTime.now
 
     @reserve.book_id = reserve_params[:book_id] unless reserve_params[:book_id].present?
-    @reserve.user_id = current_user.id unless reserve_params[:user_id].present?
+    @reserve.user_id = current_user.id if reserve_params[:user_id].blank? && !current_user.admin?
     @reserve.devolution_date = DateTime.now + 3.days unless reserve_params[:devolution_date].present?
 
     respond_to do |format|
       if @reserve.save
-        format.html { redirect_to reserve_url(@reserve), notice: 'Reserve was successfully created.' }
+        if can? :manage, Reserve
+          format.html { redirect_to reserve_url(@reserve), notice: 'Reserve was successfully created.' }
+        else
+          format.html { redirect_to books_url, status: :created }
+        end
         format.json { render :show, status: :created, location: @reserve }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        if can? :manage, Reserve
+          format.html { render :new, status: :unprocessable_entity }
+        else
+          format.html { redirect_to books_url, status: :unprocessable_entity, alert: @reserve.errors.full_messages }
+        end
         format.json { render json: @reserve.errors, status: :unprocessable_entity }
       end
     end
@@ -82,6 +91,12 @@ class ReservesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def reserve_params
-    params.require(:reserve).permit(:book_id, :user_id, :reserve_date, :devolution_date)
+    params.require(:reserve).permit(:book_id, :user_id, :reserve_date, :devolution_date, :status)
+  end
+
+  def set_select_fields_options
+    @users_array = User.clients.map { |user| [user.name, user.id] }
+    @books_array = Book.available.map { |book| [book.title, book.id] }
+    @books_array << [@reserve.book.title, @reserve.book_id] if @reserve.book.present?
   end
 end
