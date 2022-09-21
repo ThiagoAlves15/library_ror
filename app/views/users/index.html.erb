@@ -16,7 +16,9 @@
     <%= render "layouts/pagination", resources: @users %>
 
     <div class="mb-4">
-      <%= link_to 'New user', new_user_path, class: "btn btn-info mb-4" %>
+      <% if can? :manage, User %>
+        <%= link_to 'New user', new_user_path, class: "btn btn-info mb-4" %>
+      <% end %>
 
       <div class="row row-cols-1 row-cols-md-4 g-4 mb-4">
         <% @users.each do |user| %>
