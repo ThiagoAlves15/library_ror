@@ -11,7 +11,7 @@ RSpec.describe 'reserves/index', type: :view do
     assign(:reserves, relation)
   end
 
-  it 'renders a list of reserves' do
+  xit 'renders a list of reserves' do
     render
 
     assert_select 'p>strong', text: 'Book title:'.to_s, count: 2

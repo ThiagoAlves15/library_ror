@@ -9,13 +9,13 @@ class ReservesController < ApplicationController
   def index
     if can? :manage, Reserve
       if params[:search]
-        @reserves = Reserve.joins(:book).where('books.title ILIKE ?', "%#{params[:search]}%").order(devolution_date: :desc).page(params[:page])
+        @reserves = Reserve.joins(:book).joins(:user).where('books.title ILIKE ? OR users.name ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").order(devolution_date: :desc).page(params[:page])
       else
         @reserves = Reserve.order(devolution_date: :desc).page(params[:page])
       end
     else
       if params[:search]
-        @reserves = current_user.reserves.joins(:book).where('books.title ILIKE ?', "%#{params[:search]}%").order(devolution_date: :desc).page(params[:page])
+        @reserves = current_user.reserves.joins(:book).joins(:user).where('books.title ILIKE ? OR users.name ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").order(devolution_date: :desc).page(params[:page])
       else
         @reserves = current_user.reserves.order(devolution_date: :desc).page(params[:page])
       end
