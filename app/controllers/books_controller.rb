@@ -11,7 +11,11 @@ class BooksController < ApplicationController
     #            #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
     #            # ).order(:email).page(params[:page])
     #          end
-    @books = Book.order(:title).page(params[:page])
+    if can? :manage, Book
+      @books = Book.order(:title).page(params[:page])
+    else
+      @books = Book.available.order(:title).page(params[:page])
+    end
   end
 
   # GET /books/1 or /books/1.json

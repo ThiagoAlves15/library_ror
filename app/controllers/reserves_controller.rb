@@ -35,6 +35,10 @@ class ReservesController < ApplicationController
     @reserve = Reserve.new(reserve_params)
     @reserve.reserve_date = DateTime.now
 
+    @reserve.book_id = reserve_params[:book_id] unless reserve_params[:book_id].present?
+    @reserve.user_id = current_user.id unless reserve_params[:user_id].present?
+    @reserve.devolution_date = DateTime.now + 3.days unless reserve_params[:devolution_date].present?
+
     respond_to do |format|
       if @reserve.save
         format.html { redirect_to reserve_url(@reserve), notice: 'Reserve was successfully created.' }

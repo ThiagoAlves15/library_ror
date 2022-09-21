@@ -16,7 +16,7 @@
     <%= render "layouts/pagination", resources: @reserves %>
 
     <div class="mb-4">
-      <%= link_to 'New reserve', new_reserve_path, class: "btn btn-outline-primary mb-4" %>
+      <%= link_to 'New reserve', new_reserve_path, class: "btn btn-info mb-4" %>
 
       <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
         <% @reserves.each do |reserve| %>
