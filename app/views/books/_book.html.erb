@@ -20,6 +20,7 @@
     <% if btn_show %>
       <div class="card-footer">
         <%= link_to 'Show book', book_path(book), class: "btn btn-outline-primary w-100" %>
+        <%= button_to 'Reserve book', {:controller => "books", :action => "create", :book_id => book.id}, method: :post, class: "btn btn-outline-danger w-100" %>
       </div>
     <% end %>
   </div>

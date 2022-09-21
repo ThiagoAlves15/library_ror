@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ReservesController < ApplicationController
+  load_and_authorize_resource
+  skip_authorize_resource only: :reserve_book
   before_action :set_reserve, only: %i[show edit update destroy]
 
   # GET /reserves or /reserves.json
@@ -10,7 +12,11 @@ class ReservesController < ApplicationController
     #               #   "CONCAT(name->>'title', ' ', name->>'first', ' ', name->>'last') ILIKE ?", "%#{params[:search]}%"
     #               # ).order(:email).page(params[:page])
     #             end
-    @reserves = Reserve.order(:devolution_date).page(params[:page])
+    if can? :manage, Reserve
+      @reserves = Reserve.order(devolution_date: :desc).page(params[:page])
+    else
+      @reserves = current_user.reserves.order(devolution_date: :desc).page(params[:page])
+    end
   end
 
   # GET /reserves/1 or /reserves/1.json
